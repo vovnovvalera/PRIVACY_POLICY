@@ -39,27 +39,20 @@
 </script> -->
 <script>
 window.onload = function() {
+    // Ваша ссылка
     var deepLink = 'https://noom.sng.link/Ernae/bsdr?_dl=noom%3A%2F%2Fnoom.com%2F%3Fopen%3DFRIENDS%26invitation_code%3DRADDS1&_ddl=noom%3A%2F%2Fnoom.com%2F%3Fopen%3DFRIENDS%26invitation_code%3DRADDS1';
 
-    // Создаем невидимый элемент iframe
-    var iframe = document.createElement('iframe');
-    
-    // Делаем его полностью скрытым
-    iframe.style.border = 'none';
-    iframe.style.width = '1px';
-    iframe.style.height = '1px';
-    iframe.style.display = 'none';
-    
-    // Устанавливаем ссылку как источник
-    iframe.src = deepLink;
-    
-    // Добавляем iframe на страницу — в этот момент происходит "выстрел" ссылкой
-    document.body.appendChild(iframe);
-    
-    // Iframe попытается открыть App. 
-    // Если App перехватит фокус — отлично.
-    // Если нет — iframe попытается сделать редирект в Google Play, 
-    // но это не повлияет на основную страницу, где пользователь сможет нажать кнопку сам.
+    // 1. Запускаем переход
+    window.location.href = deepLink;
+
+    // 2. ЗАМОРАЖИВАЕМ браузер через 500-1000мс
+    // Это не даст ему уйти на страницу Google Play Web, 
+    // но системный диалог "Открыть в приложении" уже успеет появиться и останется на экране.
+    setTimeout(function() {
+        window.stop(); 
+    }, 1000); // Попробуйте значения: 500, 800, 1000.
+    // Если 1000 слишком долго (успевает открыться Play Store) — ставьте меньше.
+    // Если 500 слишком быстро (диалог не успевает появиться) — ставьте больше.
 };
 </script>
 </body>
