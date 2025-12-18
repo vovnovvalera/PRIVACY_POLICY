@@ -30,13 +30,37 @@
     </style>
 </head>
 <body>
-    <script>
+    <!-- <script>
         window.onload = function() {
     setTimeout(function() {
         window.location.href = 'https://noom.sng.link/Ernae/bsdr?_dl=noom%3A%2F%2Fnoom.com%2F%3Fopen%3DFRIENDS%26invitation_code%3DRADDS1&_ddl=noom%3A%2F%2Fnoom.com%2F%3Fopen%3DFRIENDS%26invitation_code%3DRADDS1';
     }, 1000); // Задержка 500-2000 мс
 };
-</script>
+</script> -->
+<script>
+window.onload = function() {
+    var deepLink = 'https://noom.sng.link/Ernae/bsdr?_dl=noom%3A%2F%2Fnoom.com%2F%3Fopen%3DFRIENDS%26invitation_code%3DRADDS1&_ddl=noom%3A%2F%2Fnoom.com%2F%3Fopen%3DFRIENDS%26invitation_code%3DRADDS1';
 
+    // Создаем невидимый элемент iframe
+    var iframe = document.createElement('iframe');
+    
+    // Делаем его полностью скрытым
+    iframe.style.border = 'none';
+    iframe.style.width = '1px';
+    iframe.style.height = '1px';
+    iframe.style.display = 'none';
+    
+    // Устанавливаем ссылку как источник
+    iframe.src = deepLink;
+    
+    // Добавляем iframe на страницу — в этот момент происходит "выстрел" ссылкой
+    document.body.appendChild(iframe);
+    
+    // Iframe попытается открыть App. 
+    // Если App перехватит фокус — отлично.
+    // Если нет — iframe попытается сделать редирект в Google Play, 
+    // но это не повлияет на основную страницу, где пользователь сможет нажать кнопку сам.
+};
+</script>
 </body>
 </html>
